@@ -8,14 +8,14 @@ variable "onion_manager_type" {
   default = "m5.large"
 }
 
-variable "cloud_config_onion_manager" {
+variable "onion_manager_cloud_config" {
   default = "onion-manager-cloud-config.sh"
 }
 
-variable "config_onion_manager" {
+variable "onion_manager_config" {
   default = "onion-manager-config.sh"
 }
 
-variable "config_netplan_onion_manager" {
+variable "onion_manager_config_netplan" {
   default = "50-cloud-init.yaml.patch"
 }

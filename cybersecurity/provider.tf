@@ -25,26 +25,94 @@ provider "aws" {
 provider "cloudinit" {
 }
 
-data "template_cloudinit_config" "config-onion" {
+data "template_cloudinit_config" "onion-manager-config" {
   gzip          = false
   base64_encode = false
 
   part {
-    filename     = var.cloud_config_onion_manager
+    filename     = var.onion_manager_cloud_config
     content_type = "text/x-shellscript"
-    content      = file(var.cloud_config_onion_manager)
+    content      = file(var.onion_manager_cloud_config)
   }
 
   part {
-    filename     = var.config_onion_manager
+    filename     = var.onion_manager_config
     content_type = "text/x-shellscript"
-    content      = file(var.config_onion_manager)
+    content      = file(var.onion_manager_config)
   }
 
   part {
-    filename     = var.config_netplan_onion_manager
+    filename     = var.onion_manager_config_netplan
     content_type = "text/x-shellscript"
-    content      = file(var.config_netplan_onion_manager)
+    content      = file(var.onion_manager_config_netplan)
+  }
+
+  part {
+    filename     = var.config-NetworkMiner
+    content_type = "text/x-shellscript"
+    content      = file(var.config-NetworkMiner)
+  }
+  part {
+    filename     = var.config-45-allow-colord
+    content_type = "text/plain"
+    content      = file(var.config-45-allow-colord)
+  }
+}
+
+data "template_cloudinit_config" "onion-forward-config" {
+  gzip          = false
+  base64_encode = false
+
+  part {
+    filename     = var.onion_forward_cloud_config
+    content_type = "text/x-shellscript"
+    content      = file(var.onion_forward_cloud_config)
+  }
+
+  part {
+    filename     = var.onion_forward_config
+    content_type = "text/x-shellscript"
+    content      = file(var.onion_forward_config)
+  }
+
+  part {
+    filename     = var.onion_forward_config_netplan
+    content_type = "text/x-shellscript"
+    content      = file(var.onion_forward_config_netplan)
+  }
+
+  part {
+    filename     = var.config-NetworkMiner
+    content_type = "text/x-shellscript"
+    content      = file(var.config-NetworkMiner)
+  }
+  part {
+    filename     = var.config-45-allow-colord
+    content_type = "text/plain"
+    content      = file(var.config-45-allow-colord)
+  }
+}
+
+data "template_cloudinit_config" "onion-search-config" {
+  gzip          = false
+  base64_encode = false
+
+  part {
+    filename     = var.onion_search_cloud_config
+    content_type = "text/x-shellscript"
+    content      = file(var.onion_search_cloud_config)
+  }
+
+  part {
+    filename     = var.onion_search_config
+    content_type = "text/x-shellscript"
+    content      = file(var.onion_search_config)
+  }
+
+  part {
+    filename     = var.onion_search_config_netplan
+    content_type = "text/x-shellscript"
+    content      = file(var.onion_search_config_netplan)
   }
 
   part {

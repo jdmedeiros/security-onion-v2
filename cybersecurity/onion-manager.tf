@@ -47,10 +47,7 @@ resource "aws_instance" "onion-manager" {
     volume_type           = "gp2"
   }
 
-  user_data = data.template_cloudinit_config.config-onion.rendered
-  depends_on = [
-    aws_efs_mount_target.onion2-mnt1
-  ]
+  user_data = data.template_cloudinit_config.onion-manager-config.rendered
 }
 
 resource "aws_network_interface" "onion_manager_nic_private1" {

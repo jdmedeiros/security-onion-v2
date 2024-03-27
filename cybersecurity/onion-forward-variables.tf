@@ -8,14 +8,14 @@ variable "onion_forward_type" {
   default = "m5.large"
 }
 
-variable "cloud_config_onion_forward" {
+variable "onion_forward_cloud_config" {
   default = "onion-forward-cloud-config.sh"
 }
 
-variable "config_onion_forward" {
+variable "onion_forward_config" {
   default = "onion-forward-config.sh"
 }
 
-variable "config_netplan_onion_forward" {
+variable "onion_forward_config_netplan" {
   default = "50-cloud-init.yaml.patch"
 }

@@ -8,14 +8,14 @@ variable "onion_search_type" {
   default = "m5.large"
 }
 
-variable "cloud_config_onion_search" {
+variable "onion_search_cloud_config" {
   default = "onion-search-cloud-config.sh"
 }
 
-variable "config_onion_search" {
+variable "onion_search_config" {
   default = "onion-search-config.sh"
 }
 
-variable "config_netplan_onion_search" {
+variable "onion_search_config_netplan" {
   default = "50-cloud-init.yaml.patch"
 }
