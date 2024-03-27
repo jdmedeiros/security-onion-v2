@@ -3,7 +3,7 @@ data "template_file" "fstab" {
   template = file("${path.module}/update-fstab.tpl")
 
   vars = {
-    onion_ip = aws_network_interface.onion_nic_private1.private_ip,
+    onion_ip = aws_network_interface.onion_manager_nic_private1.private_ip,
     efs_ip = aws_efs_mount_target.onion2-mnt1.ip_address
   }
 }

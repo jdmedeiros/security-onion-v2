@@ -15,7 +15,7 @@ output "caller_user" {
 }
 
 output "eip_onion" {
-  value = aws_eip.onion_public_ip.public_ip
+  value = aws_eip.onion_manager_public_ip.public_ip
 }
 
 output "eip_kali" {

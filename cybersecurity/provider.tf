@@ -30,27 +30,27 @@ data "template_cloudinit_config" "config-onion" {
   base64_encode = false
 
   part {
-    filename     = var.update-fstab
+    filename     = var.update_fstab_onion_manager
     content_type = "text/x-shellscript"
     content      = data.template_file.fstab.rendered
   }
 
   part {
-    filename = var.cloud-config-onion
+    filename = var.cloud_config_onion_manager
     content_type = "text/x-shellscript"
-    content = file(var.cloud-config-onion)
+    content = file(var.cloud_config_onion_manager)
   }
 
   part {
-    filename = var.config-onion
+    filename = var.config_onion_manager
     content_type = "text/x-shellscript"
-    content = file(var.config-onion)
+    content = file(var.config_onion_manager)
   }
 
   part {
-    filename = var.config-netplan
+    filename = var.config_netplan_onion_manager
     content_type = "text/x-shellscript"
-    content = file(var.config-netplan)
+    content = file(var.config_netplan_onion_manager)
   }
 
   part {
