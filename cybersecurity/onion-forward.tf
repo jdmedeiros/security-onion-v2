@@ -48,6 +48,10 @@ resource "aws_instance" "onion-forward" {
   }
 
   user_data = data.template_cloudinit_config.onion-forward-config.rendered
+
+  depends_on = [
+      aws_instance.onion-manager,
+  ]
 }
 
 resource "aws_network_interface" "onion_forward_nic_private1" {

@@ -16,7 +16,12 @@ if [ "$1" = "run" ]; then
   export DEBCONF_NONINTERACTIVE_SEEN=true
   apt-get -o DPkg::Options::=--force-confdef update
   apt-get -y -o DPkg::Options::=--force-confdef upgrade
-  apt-get -o DPkg::Options::=--force-confdef install -y git build-essential curl ethtool
+  apt-get -o DPkg::Options::=--force-confdef install -y git build-essential curl ethtool netfilter-persistent iptables-persistent
+
+  echo "net.ipv4.ip_forward = 1" > /etc/sysctl.d/10-ipv4_ip_forward.conf
+  sysctl -w net.ipv4.ip_forward=1
+  iptables -t nat -A POSTROUTING -o ens5 -j MASQUERADE
+  netfilter-persistent save
 
   curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /usr/share/keyrings/docker-archive-keyring.gpg
 
@@ -31,9 +36,10 @@ if [ "$1" = "run" ]; then
   mkfs.xfs /dev/mapper/vg0-lv0
 
   mount /dev/mapper/vg0-lv0 /mnt
-  rsync -aHAX --numeric-ids --exclude={"/proc/*","/sys/*","/dev/*","/tmp/*","/mnt/*","/run/*","/media/*","/lost+found"} / /mnt/
 
   update-initramfs -u
+
+  rsync -aHAX --numeric-ids --exclude={"/proc/*","/sys/*","/dev/*","/tmp/*","/mnt/*","/run/*","/media/*","/lost+found"} / /mnt/
 
   reboot
 fi

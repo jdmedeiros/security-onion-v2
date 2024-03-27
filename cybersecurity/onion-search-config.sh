@@ -11,6 +11,9 @@ if [ "$1" = "run" ]; then
 
   hostnamectl set-hostname onion-search
 
+  patch /etc/netplan/50-cloud-init.yaml < /var/lib/cloud/instance/scripts/50-cloud-init.yaml.patch
+  netplan apply
+
   # Debconf needs to be told to accept that user interaction is not desired
   export DEBIAN_FRONTEND=noninteractive
   export DEBCONF_NONINTERACTIVE_SEEN=true
@@ -31,9 +34,10 @@ if [ "$1" = "run" ]; then
   mkfs.xfs /dev/mapper/vg0-lv0
 
   mount /dev/mapper/vg0-lv0 /mnt
-  rsync -aHAX --numeric-ids --exclude={"/proc/*","/sys/*","/dev/*","/tmp/*","/mnt/*","/run/*","/media/*","/lost+found"} / /mnt/
 
   update-initramfs -u
+
+  rsync -aHAX --numeric-ids --exclude={"/proc/*","/sys/*","/dev/*","/tmp/*","/mnt/*","/run/*","/media/*","/lost+found"} / /mnt/
 
   reboot
 fi

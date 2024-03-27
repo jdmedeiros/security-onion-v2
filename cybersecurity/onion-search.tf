@@ -48,6 +48,10 @@ resource "aws_instance" "onion-search" {
   }
 
   user_data = data.template_cloudinit_config.onion-search-config.rendered
+
+  depends_on = [
+    aws_instance.onion-manager,
+  ]
 }
 
 resource "aws_network_interface" "onion_search_nic_private1" {
