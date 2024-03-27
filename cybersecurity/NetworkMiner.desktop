@@ -1,0 +1,10 @@
+[Desktop Entry]
+Version=1.0
+Type=Application
+Name=NetworkMiner
+Comment=
+Exec=mono /opt/NetworkMiner/NetworkMiner.exe  --noupdatecheck
+Icon=network-card
+Path=
+Terminal=false
+StartupNotify=false
