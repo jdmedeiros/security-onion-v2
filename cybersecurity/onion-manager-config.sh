@@ -25,19 +25,6 @@ if [ "$1" = "run" ]; then
   patch /etc/netplan/01-network-manager-all.yaml < /var/lib/cloud/instance/scripts/50-cloud-init.yaml.patch
   systemctl enable --now NetworkManager
   netplan apply
-  mkdir /mnt/efs
-  /var/lib/cloud/instance/scripts/update-fstab.sh
-  mount -a
-  chgrp ubuntu /mnt/efs/
-  chmod g+w /mnt/efs/
-
-#  rmdir /opt
-#  mkdir /mnt/efs/opt
-#  ln -s /mnt/efs/opt /opt
-#  mkdir /mnt/efs/nsm
-#  ln -s /mnt/efs/nsm /nsm
-#  mkdir /mnt/efs/docker
-#  ln -s /mnt/efs/docker /var/lib/docker
 
   fallocate -l 24G /swapfile
   chmod 600 /swapfile

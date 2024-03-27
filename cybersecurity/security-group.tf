@@ -1,8 +1,8 @@
 resource "aws_security_group" "cyber_default" {
   description = "CyberSecurity default VPC security group"
-  egress      = [
+  egress = [
     {
-      cidr_blocks      = [
+      cidr_blocks = [
         "0.0.0.0/0",
       ]
       description      = ""
@@ -15,9 +15,9 @@ resource "aws_security_group" "cyber_default" {
       to_port          = 0
     },
   ]
-  ingress     = [
+  ingress = [
     {
-      cidr_blocks      = [
+      cidr_blocks = [
         "192.168.0.0/16",
         "172.16.0.0/12",
         "10.0.0.0/8",
@@ -32,9 +32,9 @@ resource "aws_security_group" "cyber_default" {
       to_port          = 0
     },
   ]
-  name        = "cyber_default"
-  tags        = {
+  name = "cyber_default"
+  tags = {
     "Name" = "CyberSecurity"
   }
-  vpc_id      = aws_vpc.CyberSecurity.id
+  vpc_id = aws_vpc.CyberSecurity.id
 }

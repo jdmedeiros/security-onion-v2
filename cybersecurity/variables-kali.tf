@@ -1,16 +1,16 @@
 variable "kali_ami" {
-  type = string
+  type    = string
   default = "ami-052c14fe577c45df1"
 }
 
 variable "kali_type" {
-  type = string
+  type    = string
   default = "m5.large"
 }
 
 variable "kali_userpw" {
   description = "Insert the pasword for the user kali"
-  type = string
+  type        = string
   sensitive   = true
 }
 

@@ -2,11 +2,11 @@ terraform {
   required_version = ">= 1.3.9"
   required_providers {
     aws = {
-      source = "hashicorp/aws"
+      source  = "hashicorp/aws"
       version = ">= 4.56.0"
     }
     cloudinit = {
-      source = "hashicorp/cloudinit"
+      source  = "hashicorp/cloudinit"
       version = "2.3.2"
     }
   }
@@ -26,47 +26,41 @@ provider "cloudinit" {
 }
 
 data "template_cloudinit_config" "config-onion" {
-  gzip = false
+  gzip          = false
   base64_encode = false
 
   part {
-    filename     = var.update_fstab_onion_manager
+    filename     = var.cloud_config_onion_manager
     content_type = "text/x-shellscript"
-    content      = data.template_file.fstab.rendered
+    content      = file(var.cloud_config_onion_manager)
   }
 
   part {
-    filename = var.cloud_config_onion_manager
+    filename     = var.config_onion_manager
     content_type = "text/x-shellscript"
-    content = file(var.cloud_config_onion_manager)
+    content      = file(var.config_onion_manager)
   }
 
   part {
-    filename = var.config_onion_manager
+    filename     = var.config_netplan_onion_manager
     content_type = "text/x-shellscript"
-    content = file(var.config_onion_manager)
+    content      = file(var.config_netplan_onion_manager)
   }
 
   part {
-    filename = var.config_netplan_onion_manager
+    filename     = var.config-NetworkMiner
     content_type = "text/x-shellscript"
-    content = file(var.config_netplan_onion_manager)
-  }
-
-  part {
-    filename = var.config-NetworkMiner
-    content_type = "text/x-shellscript"
-    content = file(var.config-NetworkMiner)
+    content      = file(var.config-NetworkMiner)
   }
   part {
-    filename = var.config-45-allow-colord
+    filename     = var.config-45-allow-colord
     content_type = "text/plain"
-    content = file(var.config-45-allow-colord)
+    content      = file(var.config-45-allow-colord)
   }
 }
 
 data "template_cloudinit_config" "config-kali" {
-  gzip = false
+  gzip          = false
   base64_encode = false
 
   part {
@@ -76,32 +70,32 @@ data "template_cloudinit_config" "config-kali" {
   }
 
   part {
-    filename = var.cloud-config-kali
+    filename     = var.cloud-config-kali
     content_type = "text/x-shellscript"
-    content = file(var.cloud-config-kali)
+    content      = file(var.cloud-config-kali)
   }
 
   part {
-    filename = var.config-kali
+    filename     = var.config-kali
     content_type = "text/x-shellscript"
-    content = file(var.config-kali)
+    content      = file(var.config-kali)
   }
 
   part {
-    filename = var.config-NetworkMiner
+    filename     = var.config-NetworkMiner
     content_type = "text/x-shellscript"
-    content = file(var.config-NetworkMiner)
+    content      = file(var.config-NetworkMiner)
   }
 
   part {
-    filename = var.config-45-allow-colord
+    filename     = var.config-45-allow-colord
     content_type = "text/plain"
-    content = file(var.config-45-allow-colord)
+    content      = file(var.config-45-allow-colord)
   }
 }
 
 data "template_cloudinit_config" "config-sift" {
-  gzip = false
+  gzip          = false
   base64_encode = false
 
   part {
@@ -111,32 +105,32 @@ data "template_cloudinit_config" "config-sift" {
   }
 
   part {
-    filename = var.cloud-config-sift
+    filename     = var.cloud-config-sift
     content_type = "text/x-shellscript"
-    content = file(var.cloud-config-sift)
+    content      = file(var.cloud-config-sift)
   }
 
   part {
-    filename = var.config-sift
+    filename     = var.config-sift
     content_type = "text/x-shellscript"
-    content = file(var.config-sift)
+    content      = file(var.config-sift)
   }
 
   part {
-    filename = var.config-NetworkMiner
+    filename     = var.config-NetworkMiner
     content_type = "text/x-shellscript"
-    content = file(var.config-NetworkMiner)
+    content      = file(var.config-NetworkMiner)
   }
 
   part {
-    filename = var.config-45-allow-colord
+    filename     = var.config-45-allow-colord
     content_type = "text/plain"
-    content = file(var.config-45-allow-colord)
+    content      = file(var.config-45-allow-colord)
   }
 }
 
 data "template_cloudinit_config" "config-remnux" {
-  gzip = false
+  gzip          = false
   base64_encode = false
 
   part {
@@ -146,26 +140,26 @@ data "template_cloudinit_config" "config-remnux" {
   }
 
   part {
-    filename = var.cloud-config-remnux
+    filename     = var.cloud-config-remnux
     content_type = "text/x-shellscript"
-    content = file(var.cloud-config-remnux)
+    content      = file(var.cloud-config-remnux)
   }
 
   part {
-    filename = var.config-remnux
+    filename     = var.config-remnux
     content_type = "text/x-shellscript"
-    content = file(var.config-remnux)
+    content      = file(var.config-remnux)
   }
 
   part {
-    filename = var.config-NetworkMiner
+    filename     = var.config-NetworkMiner
     content_type = "text/x-shellscript"
-    content = file(var.config-NetworkMiner)
+    content      = file(var.config-NetworkMiner)
   }
 
   part {
-    filename = var.config-45-allow-colord
+    filename     = var.config-45-allow-colord
     content_type = "text/plain"
-    content = file(var.config-45-allow-colord)
+    content      = file(var.config-45-allow-colord)
   }
 }

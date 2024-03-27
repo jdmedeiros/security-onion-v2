@@ -1,16 +1,16 @@
 variable "sift_ami" {
-  type = string
+  type    = string
   default = "ami-07f86b1b81ff3114b"
 }
 
 variable "sift_type" {
-  type = string
+  type    = string
   default = "m5.large"
 }
 
 variable "sift_userpw" {
   description = "Insert the pasword for the user sift"
-  type = string
+  type        = string
   sensitive   = true
 }
 

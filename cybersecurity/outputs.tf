@@ -14,7 +14,7 @@ output "caller_user" {
   value = data.aws_caller_identity.current.user_id
 }
 
-output "eip_onion" {
+output "eip_onion_manager" {
   value = aws_eip.onion_manager_public_ip.public_ip
 }
 

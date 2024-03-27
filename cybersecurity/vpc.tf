@@ -1,72 +1,72 @@
 resource "aws_vpc" "CyberSecurity" {
-  cidr_block                           = "10.0.0.0/16"
-  tags                                 = {
+  cidr_block = "10.0.0.0/16"
+  tags = {
     "Name" = "CyberSecurity"
   }
 }
 
 resource "aws_subnet" "subnet_private1" {
-  availability_zone                              = var.avail_zone
-  cidr_block                                     = "10.0.1.0/24"
-  tags                                           = {
+  availability_zone = var.avail_zone
+  cidr_block        = "10.0.1.0/24"
+  tags = {
     "Name" = "CyberSecurity-subnet-cyber_private1"
   }
-  vpc_id                                         = aws_vpc.CyberSecurity.id
+  vpc_id = aws_vpc.CyberSecurity.id
 }
 
 resource "aws_subnet" "subnet_private2" {
-  availability_zone                              = var.avail_zone
-  cidr_block                                     = "10.0.2.0/24"
-  tags                                           = {
+  availability_zone = var.avail_zone
+  cidr_block        = "10.0.2.0/24"
+  tags = {
     "Name" = "CyberSecurity-subnet-cyber_private2"
   }
-  vpc_id                                         = aws_vpc.CyberSecurity.id
+  vpc_id = aws_vpc.CyberSecurity.id
 }
 
 resource "aws_subnet" "subnet_private3" {
-  availability_zone                              = var.avail_zone
-  cidr_block                                     = "10.0.3.0/24"
-  tags                                           = {
+  availability_zone = var.avail_zone
+  cidr_block        = "10.0.3.0/24"
+  tags = {
     "Name" = "CyberSecurity-subnet-cyber_private3"
   }
-  vpc_id                                         = aws_vpc.CyberSecurity.id
+  vpc_id = aws_vpc.CyberSecurity.id
 }
 
 resource "aws_subnet" "subnet_public1" {
-  availability_zone                              = var.avail_zone
-  cidr_block                                     = "10.0.0.0/24"
-  tags                                           = {
+  availability_zone = var.avail_zone
+  cidr_block        = "10.0.0.0/24"
+  tags = {
     "Name" = "CyberSecurity-subnet-cyber_public1"
   }
-  vpc_id                                         = aws_vpc.CyberSecurity.id
+  vpc_id = aws_vpc.CyberSecurity.id
 }
 
 resource "aws_internet_gateway" "CyberSecurity-igw" {
-  tags     = {
+  tags = {
     "Name" = "CyberSecurity-igw"
   }
-  vpc_id   = aws_vpc.CyberSecurity.id
+  vpc_id = aws_vpc.CyberSecurity.id
 }
 
 resource "aws_route_table" "rt_private1" {
-  tags             = {
+  tags = {
     "Name" = "CyberSecurity-rtb-cyber_private1"
   }
-  vpc_id           = aws_vpc.CyberSecurity.id
+  vpc_id = aws_vpc.CyberSecurity.id
 }
 
 resource "aws_route_table" "rt_private2" {
-  tags             = {
+  tags = {
     "Name" = "CyberSecurity-rtb-cyber_private2"
   }
-  vpc_id           = aws_vpc.CyberSecurity.id
+  vpc_id = aws_vpc.CyberSecurity.id
 }
 
 resource "aws_route_table" "rt_private3" {
-  tags             = {
+  tags = {
     "Name" = "CyberSecurity-rtb-cyber_private3"
   }
-  vpc_id           = aws_vpc.CyberSecurity.id
+  vpc_id = aws_vpc.CyberSecurity.id
 }
 
 resource "aws_route_table" "rt_public1" {
@@ -76,7 +76,7 @@ resource "aws_route_table" "rt_public1" {
     cidr_block = "0.0.0.0/0"
     gateway_id = aws_internet_gateway.CyberSecurity-igw.id
   }
-  tags             = {
+  tags = {
     "Name" = "CyberSecurity-rtb-public"
   }
 }
@@ -102,7 +102,7 @@ resource "aws_route_table_association" "rta_public1" {
 }
 
 resource "aws_vpc_endpoint" "CyberSecurity-vpce-s3" {
-  policy                = jsonencode(
+  policy = jsonencode(
     {
       Statement = [
         {
@@ -112,20 +112,20 @@ resource "aws_vpc_endpoint" "CyberSecurity-vpce-s3" {
           Resource  = "*"
         },
       ]
-      Version   = "2008-10-17"
+      Version = "2008-10-17"
     }
   )
-  route_table_ids       = [
+  route_table_ids = [
     aws_route_table.rt_private1.id,
     aws_route_table.rt_private2.id,
     aws_route_table.rt_private3.id,
   ]
-  service_name          = var.vpc_ep_svc_name
-  tags                  = {
+  service_name = var.vpc_ep_svc_name
+  tags = {
     "Name" = "CyberSecurity-vpce-s3"
   }
-  vpc_endpoint_type     = "Gateway"
-  vpc_id                = aws_vpc.CyberSecurity.id
+  vpc_endpoint_type = "Gateway"
+  vpc_id            = aws_vpc.CyberSecurity.id
 }
 
 resource "aws_key_pair" "CyberSecurity" {

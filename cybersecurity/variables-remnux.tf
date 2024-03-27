@@ -1,16 +1,16 @@
 variable "remnux_ami" {
-  type = string
+  type    = string
   default = "ami-07c8f32e971547bef"
 }
 
 variable "remnux_type" {
-  type = string
+  type    = string
   default = "m5.large"
 }
 
 variable "remnux_userpw" {
   description = "Insert the pasword for the user remnux"
-  type = string
+  type        = string
   sensitive   = true
 }
 
