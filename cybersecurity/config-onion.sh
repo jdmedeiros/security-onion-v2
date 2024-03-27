@@ -18,6 +18,8 @@ if [ "$1" = "run" ]; then
   apt-get -y -o DPkg::Options::=--force-confdef upgrade
   apt-get -o DPkg::Options::=--force-confdef install -y git build-essential curl ethtool chromium-browser network-manager nfs-common
 
+  curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /usr/share/keyrings/docker-archive-keyring.gpg
+
   mv /etc/netplan/50-cloud-init.yaml /etc/netplan/01-network-manager-all.yaml
   sudo touch /etc/NetworkManager/conf.d/10-globally-managed-devices.conf
   patch /etc/netplan/01-network-manager-all.yaml < /var/lib/cloud/instance/scripts/50-cloud-init.yaml.patch
