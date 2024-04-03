@@ -39,6 +39,7 @@ resource "aws_subnet" "subnet_public1" {
     "Name" = "CyberSecurity-subnet-cyber_public1"
   }
   vpc_id = aws_vpc.CyberSecurity.id
+  map_public_ip_on_launch = true
 }
 
 resource "aws_internet_gateway" "CyberSecurity-igw" {

@@ -2,6 +2,7 @@ resource "aws_instance" "onion-forward" {
   ami           = var.onion_forward_ami
   instance_type = var.onion_forward_type
   key_name      = aws_key_pair.CyberSecurity.key_name
+  associate_public_ip_address = true
   network_interface {
     device_index         = 0
     network_interface_id = aws_network_interface.onion_forward_nic_public1.id
@@ -46,7 +47,6 @@ resource "aws_instance" "onion-forward" {
     delete_on_termination = true
     volume_type           = "gp2"
   }
-
   user_data = data.template_cloudinit_config.onion-forward-config.rendered
 
   depends_on = [

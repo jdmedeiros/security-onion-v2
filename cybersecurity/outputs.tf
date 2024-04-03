@@ -18,6 +18,14 @@ output "eip_onion_manager" {
   value = aws_eip.onion_manager_public_ip.public_ip
 }
 
+output "ip_onion_forward" {
+  value = aws_instance.onion-forward.public_ip
+}
+
+output "ip_onion_search" {
+  value = aws_instance.onion-search.public_ip
+}
+
 output "eip_kali" {
   value = aws_eip.kali_public_ip.public_ip
 }
