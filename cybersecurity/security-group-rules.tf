@@ -25,7 +25,7 @@ resource "aws_vpc_security_group_ingress_rule" "cyber_nos_enta" {
 }
 
 resource "aws_vpc_security_group_ingress_rule" "cyber_meo_enta" {
-  cidr_ipv4         = "83.240.158.54/32"
+  cidr_ipv4         = "81.20.242.212/32"
   description       = "ENTA MEO"
   ip_protocol       = "-1"
   security_group_id = aws_security_group.cyber_default.id

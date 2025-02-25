@@ -1,6 +1,6 @@
 variable "onion_forward_ami" {
   type    = string
-  default = "ami-080e1f13689e07408"
+  default = "ami-0e1bed4f06a3b463d"
 }
 
 variable "onion_forward_type" {

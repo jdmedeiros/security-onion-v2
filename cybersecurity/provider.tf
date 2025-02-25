@@ -19,7 +19,7 @@ provider "aws" {
   #secret_key = "xxxx"
   #token = "xxxx"
 
-  profile = "vocareum"
+  #profile = "vocareum"
 }
 
 provider "cloudinit" {

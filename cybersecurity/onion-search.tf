@@ -2,7 +2,7 @@ resource "aws_instance" "onion-search" {
   ami           = var.onion_search_ami
   instance_type = var.onion_search_type
   key_name      = aws_key_pair.CyberSecurity.key_name
-  associate_public_ip_address = true
+#  associate_public_ip_address = true
   network_interface {
     device_index         = 0
     network_interface_id = aws_network_interface.onion_search_nic_public1.id

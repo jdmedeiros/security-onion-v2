@@ -1,6 +1,6 @@
 variable "kali_ami" {
   type    = string
-  default = "ami-052c14fe577c45df1"
+  default = "ami-0820eca5060908d9f"
 }
 
 variable "kali_type" {
