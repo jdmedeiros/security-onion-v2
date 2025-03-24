@@ -130,6 +130,6 @@ resource "aws_vpc_endpoint" "CyberSecurity-vpce-s3" {
 }
 
 resource "aws_key_pair" "CyberSecurity" {
-  key_name   = "Redes"
+  key_name   = "vockey"
   public_key = var.public_key
 }
